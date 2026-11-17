@@ -1,0 +1,12 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# full source files (WHO FluID of all countries, FluNet), as .influcast/ in TSFM-ensemble-influcast
+.sources/
+
+# first forecasts on the raw `value` (local only)
+model-output/ili_raw_value/

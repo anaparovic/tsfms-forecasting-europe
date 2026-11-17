@@ -1,0 +1,15 @@
+# Model packages (Chronos-2, TimesFM 2.5, TabPFN-TS): Python 3.11, CPU.
+#   uv venv --python 3.11 <venv>
+#   uv pip install --python <venv> --index-url https://download.pytorch.org/whl/cpu torch==2.15.0
+#   uv pip install --python <venv> -r requirements-models.txt
+# TabPFN-TS uses the Prior Labs API: set the environment variable TABPFN_ACCESS_TOKEN.
+# Versions as in github.com/ngozzi/epi-tsfm; TimesFM pinned to the commit used.
+
+chronos-forecasting==2.2.1
+timesfm @ git+https://github.com/google-research/timesfm.git@e51928e27119cb17bebc005be2696b75e0a9e688
+tabpfn-time-series==1.0.7
+pandas==2.3.3
+numpy==2.4.6
+matplotlib==3.11.2
+ipykernel==7.4.0
+pyyaml==6.0.3

@@ -1,0 +1,41 @@
+# Pipeline configuration
+
+targets: [ILI, ARI]
+models: [Chronos, TimesFM, TabPFN-TS]
+
+# Model input versions
+#   itpT: gaps filled by linear interpolation, each location from its first reported week
+#   itpF: gaps left as NaN, all locations from the first week in the data (as epi-tsfm)
+versions: [itpT, itpF]
+
+# Seasons: week 40 to week 20 of the next year; weeks 21-39 belong to no season
+first_season: 2014              # data from 2014-W40
+season_start_week: 40
+season_end_week: 20
+valid_share: 0.5                # a season is valid if more than 50% of its weeks are reported
+covid_seasons: ["2020/21", "2021/22"]
+covid_start: "2020-W10"         # end of season 2019/20, not used
+
+# WHO FluID locations (not in ERVISS); GB = sum of the four UK regions
+fluid_countries:
+  "Switzerland": CH
+  "United Kingdom, England": GB-ENG
+  "United Kingdom, Northern Ireland": GB-NIR
+  "United Kingdom, Scotland": GB-SCT
+  "United Kingdom, Wales": GB-WLS
+gb_regions: [GB-ENG, GB-NIR, GB-SCT, GB-WLS]
+
+# Cleaning (value_clean)
+spike_window: 4                 # weeks before and after that a week is compared with
+spike_ratio: 2
+spike_min: 10
+max_interpolated_gap: 2         # longest gap filled by interpolation
+
+# Retrospective forecasts (code/backtest.py)
+first_forecast_season: "2017/18"  # finished, non-COVID seasons from this one on
+first_origin_week: 36           # 4 weeks before the season starts, so an onset in W40 can be forecast
+last_origin_week: 19            # horizon 1 is then W20, the last week of the season
+min_weeks: 52                   # a location needs at least this many reported weeks
+
+# TabPFN-TS: "client" = Prior Labs API (TABPFN_ACCESS_TOKEN), "local" = CPU
+tabpfn_mode: client
